@@ -121,6 +121,12 @@ streamlit run app.py
 - Libraries: PyTorch, Diffusers, Transformers, Accelerate, Pillow, NumPy, pytest, Streamlit. Exact versions for my run are in `outputs/environment.json`.
 - Sketches: all three are my own drawings.
 
+## My results and report
+
+My T4 run is committed in `outputs/`. The full write-up, with every sketch beside its generated images, is in [`report/REPORT.md`](report/REPORT.md) (Word and PDF versions sit next to it). My image scores are in `outputs/human_review_draft.csv`.
+
+![Car: my sketch, its control map, then scales 0.00, 0.65 and 1.10](outputs/01_car_comparison.png)
+
 ## AI assistance
 
-I used an AI coding assistant (Claude, by Anthropic) to help write and test parts of the pipeline code, the notebook and this README. I chose the subjects, drew the sketches, ran the experiments, judged the results and wrote the analysis myself, and I can explain every part of the code.
+I used Claude (Anthropic) as an assistant for this project. It helped me write and test the pipeline code, the notebook and this README, suggested the prompts, and helped me draft the report and the first version of my image scores. I chose the subjects, drew the sketches, ran the experiments on Colab and checked every result, and I can explain every part of the code.
