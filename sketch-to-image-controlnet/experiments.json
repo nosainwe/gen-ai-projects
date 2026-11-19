@@ -1,0 +1,74 @@
+{
+  "model_base": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+  "controlnet_model": "lllyasviel/control_v11p_sd15_scribble",
+  "negative_prompt": "poor geometry, blurry, distorted, unreadable text, watermark",
+  "size": 512,
+  "num_inference_steps": 25,
+  "guidance_scale": 7.0,
+  "seed": 2026,
+  "threshold": 205,
+  "edge_tolerance_pixels": 5,
+  "prompt_variant_strength": 0.65,
+  "experiments": [
+    {
+      "sketch": "01_car.png",
+      "label": "car",
+      "prompt": "a modern car, realistic photograph, glossy red paint, chrome details, parked on a city street, daylight, high detail",
+      "control_strengths": [
+        0.0,
+        0.65,
+        1.1
+      ],
+      "prompt_variants": [
+        {
+          "name": "vintage",
+          "prompt": "a vintage 1960s car, black and white film photograph, quiet country road, soft overcast light"
+        },
+        {
+          "name": "futuristic",
+          "prompt": "a futuristic electric concept car, neon-lit city street at night, wet road reflections, glossy 3D render"
+        }
+      ]
+    },
+    {
+      "sketch": "02_house.png",
+      "label": "house",
+      "prompt": "a two-storey family house, realistic architectural photograph, brick walls, tiled roof, front garden, daylight, high detail",
+      "control_strengths": [
+        0.0,
+        0.65,
+        1.1
+      ],
+      "prompt_variants": [
+        {
+          "name": "snow_cabin",
+          "prompt": "a wooden cabin in a snowy pine forest at dusk, warm light in the windows, realistic photograph"
+        },
+        {
+          "name": "watercolour",
+          "prompt": "a watercolour illustration of a cottage with a flower garden, soft pastel colours, paper texture"
+        }
+      ]
+    },
+    {
+      "sketch": "03_sword.png",
+      "label": "sword",
+      "prompt": "a medieval steel longsword, realistic product photograph, polished blade, leather-wrapped grip, plain dark background, studio lighting, high detail",
+      "control_strengths": [
+        0.0,
+        0.65,
+        1.1
+      ],
+      "prompt_variants": [
+        {
+          "name": "crystal",
+          "prompt": "a fantasy sword made of glowing blue crystal, dark cave background, dramatic rim lighting"
+        },
+        {
+          "name": "rusted",
+          "prompt": "an ancient rusted iron sword half-buried in desert sand, archaeological find, natural daylight"
+        }
+      ]
+    }
+  ]
+}

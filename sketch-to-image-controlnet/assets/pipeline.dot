@@ -1,0 +1,15 @@
+digraph G { graph [rankdir=LR, bgcolor=white, nodesep=0.36, ranksep=0.58, pad=0.2];
+node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=11, color="#CBD5E1", fillcolor="#F1F5F9", margin="0.15,0.11"];
+original [label="My hand-drawn sketch\ncar · house · sword",fillcolor="#EEF2FF"];
+pre [label="EXIF correction · pad\nthreshold dark strokes"];
+control [label="White lines / black image\nScribble ControlNet input",fillcolor="#DBEAFE"];
+cn [label="ControlNet v1.1 Scribble\nstrength = 0 / 0.65 / 1.10",fillcolor="#D1FAE5"];
+text [label="Text prompt (main or variant)\n+ negative prompt",fillcolor="#FEF3C7"];
+seed [label="Fixed CPU RNG seed\ninitial latent noise",fillcolor="#FEF3C7"];
+unet [label="Stable Diffusion 1.5\nUNet + UniPC scheduler",fillcolor="#F3E8FF"];
+vae [label="VAE decoder"];
+images [label="15 generated images\nshown beside my sketch",fillcolor="#DCFCE7"];
+record [label="Manifest · comparison sheets\nmy ratings + edge proxy",fillcolor="#F1F5F9"];
+original -> pre -> control -> cn -> unet -> vae -> images -> record;
+text -> unet;seed -> unet;
+}
