@@ -99,14 +99,22 @@ I also log an *edge-proximity proxy*: the share of my stroke pixels that sit wit
 - The scribble model was trained on rough line drawings, so very detailed shading in a sketch doesn't help it.
 - My tests (`tests/`) check preprocessing, configuration and bookkeeping with a fake pipeline. They don't test image quality; only the real run does that.
 
-## Optional local interface
+## My web app (bonus)
 
-`app.py` is a small Streamlit page where I can upload a sketch, type a prompt and pick a strength. It needs a CUDA GPU:
+The experiments answer my question; the web app lets anyone try it. I built it in Gradio (`src/gradio_app.py`). I can draw a sketch straight on a 512 × 512 canvas in the browser, or upload a photo of a pen drawing. The page shows the control map ControlNet actually sees, with an ink check that warns me before a shadowy photo wastes a generation, then generates with my prompt, strength, seed and step count. Buttons fill in my three main prompts.
+
+It reuses my preprocessing and settings, so a drawing at strength 0.65 with seed 2026 goes through the same steps as my experiment runs.
+
+**On Colab (how I run it):** open `notebooks/02_web_app.ipynb`, pick a T4 GPU and run the four cells. The last one prints a temporary public `gradio.live` link.
+
+**Locally** (needs a CUDA GPU with enough memory):
 
 ```bash
-pip install -r requirements-ui.txt
-streamlit run app.py
+pip install -r requirements.txt -r requirements-ui.txt
+python app.py            # add --share for a public link
 ```
+
+`tests/test_gradio_app.py` checks the app's logic with a fake model: canvas flattening, choosing between a drawing and an upload, input checks, and that my settings reach the model unchanged.
 
 ## References
 

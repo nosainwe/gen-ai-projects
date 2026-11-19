@@ -8,7 +8,7 @@ This is where I keep my generative AI projects. Each one lives in its own folder
 
 | Project | What it does | Stack |
 |---|---|---|
-| [Bringing Sketches to Life](sketch-to-image-controlnet/) | Turns my hand-drawn sketches (a car, a house and a sword) into finished images, and tests how control strength and prompt wording affect how much of each drawing survives. Built for Computer Vision and Machine Learning II at UPEC, with Professor Arezoo Ghodsifard. | Stable Diffusion 1.5, ControlNet v1.1 Scribble, Diffusers, Google Colab |
+| [Bringing Sketches to Life](sketch-to-image-controlnet/) | Turns my hand-drawn sketches (a car, a house and a sword) into finished images, and tests how control strength and prompt wording affect how much of each drawing survives. Comes with a Gradio web app where you draw straight in the browser. Built for Computer Vision and Machine Learning II at UPEC, with Professor Arezoo Ghodsifard. | Stable Diffusion 1.5, ControlNet v1.1 Scribble, Diffusers, Gradio, Google Colab |
 
 ## Layout
 

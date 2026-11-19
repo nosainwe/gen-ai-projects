@@ -21,17 +21,26 @@ def prepare_sketch(path: str | Path, size: int = 512, threshold: int = 205) -> I
     I pad the photo onto a white square instead of stretching it, so the car or
     sword keeps its proportions. Any pixel darker than `threshold` counts as ink.
     """
-    if size < 64 or size % 8:
-        # Stable Diffusion's VAE downsamples by 8, so the side must divide by 8.
-        raise ValueError("size must be >=64 and divisible by 8")
-    if not 1 <= threshold <= 254:
-        raise ValueError("threshold must be in [1, 254]")
     path = Path(path)
     if not path.is_file():
         raise FileNotFoundError(f"Sketch not found: {path}")
     with Image.open(path) as raw:
         # Phone photos often carry a rotation flag; I apply it before anything else.
         image = ImageOps.exif_transpose(raw).convert("RGB")
+    return control_map_from_image(image, size, threshold)
+
+
+def control_map_from_image(image: Image.Image, size: int = 512, threshold: int = 205) -> Image.Image:
+    """Same conversion as prepare_sketch, for an image already in memory.
+
+    My web app uses this one, since a drawing from the browser canvas never touches disk.
+    """
+    if size < 64 or size % 8:
+        # Stable Diffusion's VAE downsamples by 8, so the side must divide by 8.
+        raise ValueError("size must be >=64 and divisible by 8")
+    if not 1 <= threshold <= 254:
+        raise ValueError("threshold must be in [1, 254]")
+    image = image.convert("RGB")
     image.thumbnail((size, size), Image.Resampling.LANCZOS)
     canvas = Image.new("RGB", (size, size), "white")
     canvas.paste(image, ((size - image.width) // 2, (size - image.height) // 2))

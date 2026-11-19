@@ -1,2 +1,1 @@
--r requirements.txt
-streamlit>=1.37,<2
+gradio>=5.20,<6
