@@ -1,0 +1,9 @@
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+.ipynb_checkpoints/
+outputs/_private/
+outputs/*.tmp
+~$*.docx
+# I commit my own sketches and generated outputs on purpose: they're part of my submission.

@@ -1,0 +1,12 @@
+# I install a CUDA build of PyTorch first if my machine needs one (Colab already has it).
+# The exact versions from my real run are recorded in outputs/environment.json.
+torch>=2.3,<3
+diffusers>=0.35.1,<0.40
+transformers>=4.45,<5
+accelerate>=1,<2
+huggingface-hub>=0.25,<2
+safetensors>=0.4,<1
+Pillow>=10,<13
+numpy>=1.26,<3
+pytest>=8,<10
+jupyterlab>=4,<5
