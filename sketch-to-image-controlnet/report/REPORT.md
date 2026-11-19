@@ -86,11 +86,15 @@ The edge proxy doesn't measure sketch preservation. It rises with the scale, fro
 
 As for next steps, I'd give each sketch its own scale, run several seeds per setting, clean the hatching out of my house drawing and add that stricter edge metric. The seeds matter most. With one seed per setting, I can't rule out that some of the differences above come from lucky noise rather than the setting itself.
 
-## 6. Reproducibility
+## 6. Bonus: my web app
+
+Fixed experiments answer my question, but nobody can poke at them. So I built a Gradio app (`src/gradio_app.py`) where you draw straight onto a 512 × 512 canvas in the browser, or upload a photo of a pen sketch. Before generating, the page shows the control map ControlNet will see, plus an ink check that stops a shadowy photo from wasting a run. Prompt, strength, seed and steps are all adjustable. It calls the same preprocessing and settings as my experiments, so a drawing at 0.65 with seed 2026 follows exactly the path my report images took. I ran it from `notebooks/02_web_app.ipynb` on a Colab T4 and used it through the public Gradio link; 12 unit tests with a fake model cover its logic.
+
+## 7. Reproducibility
 
 My models are `stable-diffusion-v1-5/stable-diffusion-v1-5` and `lllyasviel/control_v11p_sd15_scribble` from Hugging Face (CreativeML OpenRAIL-M licence). I ran them on Colab (Tesla T4, Python 3.13, PyTorch 2.14.1, Diffusers 0.39.0, Transformers 4.57.6); `outputs/environment.json` has the full list. To rerun, I open `notebooks/01_sketch_to_image.ipynb` in Colab with a T4 and run the cells in order, or follow the local steps in the README. Prompts and settings live in `experiments.json`, and `outputs/run_manifest.json` records the SHA-256 hash of each input sketch.
 
-## 7. References
+## 8. References
 
 - Rombach, R. et al. (2022). *High-Resolution Image Synthesis with Latent Diffusion Models*. CVPR. arXiv:2112.10752.
 - Zhang, L., Rao, A. & Agrawala, M. (2023). *Adding Conditional Control to Text-to-Image Diffusion Models*. ICCV. arXiv:2302.05543.
@@ -100,4 +104,4 @@ My models are `stable-diffusion-v1-5/stable-diffusion-v1-5` and `lllyasviel/cont
 
 ## AI assistance
 
-I used Claude (Anthropic) on this project. It helped me write and test the pipeline code and the notebook, suggested the prompts, and drafted this report and a first pass of my image scores with me. I drew the sketches and ran the experiments on Colab. Then I went through every image myself and corrected the scores and the analysis wherever they didn't match what I saw.
+I used Claude (Anthropic) on this project. It helped me write and test the pipeline code, the notebooks and the web app, suggested the prompts, and drafted this report and a first pass of my image scores with me. I drew the sketches and ran the experiments on Colab. Then I went through every image myself and corrected the scores and the analysis wherever they didn't match what I saw.

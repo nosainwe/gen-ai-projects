@@ -105,7 +105,7 @@ The experiments answer my question; the web app lets anyone try it. I built it i
 
 It reuses my preprocessing and settings, so a drawing at strength 0.65 with seed 2026 goes through the same steps as my experiment runs.
 
-**On Colab (how I run it):** open `notebooks/02_web_app.ipynb`, pick a T4 GPU and run the four cells. The last one prints a temporary public `gradio.live` link.
+**On Colab (how I run it):** open `notebooks/02_web_app.ipynb`, pick a T4 GPU and run the four cells. The last one prints a temporary public `gradio.live` link. I tested it this way on 19 November 2026 with the real models, drawing and generating through that link.
 
 **Locally** (needs a CUDA GPU with enough memory):
 
