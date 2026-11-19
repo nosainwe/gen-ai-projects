@@ -5,7 +5,7 @@ author: "Nosa Peter Inwe · Professor: Arezoo Ghodsifard"
 date: "20 November 2026"
 ---
 
-**Code repository:** [REPO LINK]
+**Code repository:** <https://github.com/nosainwe/gen-ai-projects/tree/main/sketch-to-image-controlnet>
 
 ## 1. What I set out to do
 
