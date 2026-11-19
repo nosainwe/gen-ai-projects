@@ -5,7 +5,7 @@
 **Professor:** Arezoo Ghodsifard
 **Submission deadline:** 20 November 2026
 
-I drew three sketches by hand (a car, a house and a sword) and built a Python pipeline that turns each one into a finished image with Stable Diffusion 1.5 and a Scribble ControlNet. My question is simple: how much of my drawing's structure survives when the model invents the materials, lighting and background? I test it two ways, with a fixed seed throughout so the starting noise never changes between runs.
+I drew three sketches by hand (a car, a house and a sword) and built a Python pipeline that turns each one into a finished image with Stable Diffusion 1.5 and a Scribble ControlNet. My question is simple: how much of my drawing's structure survives when the model invents everything else, from paint to lighting? I test it two ways, with a fixed seed throughout so the starting noise never changes between runs.
 
 ## How the sketch steers the image
 
