@@ -1,4 +1,4 @@
-"""Tests for my web app's logic, with a fake model. Gradio itself isn't needed here.
+"""Tests for my web app's logic, with a fake model. Gradio itself is not needed here.
 
 Author: Nosa Peter Inwe · Computer Vision and Machine Learning II, UPEC · Professor Arezoo Ghodsifard
 """

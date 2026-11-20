@@ -34,8 +34,8 @@ EXAMPLE_PROMPTS = {
 def flatten(value) -> Image.Image | None:
     """Turn whatever Gradio hands me into a plain RGB image on white.
 
-    The drawing canvas gives me a dict with a "composite" layer that's often
-    transparent where I haven't drawn; an upload gives me a PIL image or an array.
+    The drawing canvas gives me a dict with a "composite" layer that is often
+    transparent where I have not drawn; an upload gives me a PIL image or an array.
     Transparent pixels would read as black (ink) after thresholding, so I paste
     everything onto white first.
     """

@@ -92,7 +92,7 @@ def prepare_inputs(s: dict, root: Path, out: Path) -> dict:
 
 
 def load_pipeline(s: dict, allow_cpu: bool = False):
-    """Load the pretrained models from Hugging Face. I don't train anything from scratch."""
+    """Load the pretrained models from Hugging Face. I do not train anything from scratch."""
     import torch
     from diffusers import ControlNetModel, StableDiffusionControlNetPipeline, UniPCMultistepScheduler
     has_cuda = torch.cuda.is_available()
@@ -148,7 +148,7 @@ def run_generation(s: dict, root: Path, out: Path, controls: dict, pipe, device:
 
     def generate(e, control, prompt, strength):
         # A fresh generator with the same seed gives every run the same starting noise,
-        # so the only differences come from the setting I'm testing.
+        # so the only differences come from the setting I am testing.
         return pipe(prompt=prompt, negative_prompt=s.get("negative_prompt"), image=control,
                     width=int(s["size"]), height=int(s["size"]),
                     num_inference_steps=int(s["num_inference_steps"]),

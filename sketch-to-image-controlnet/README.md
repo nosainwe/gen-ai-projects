@@ -9,11 +9,11 @@ I drew three sketches by hand (a car, a house and a sword) and built a Python pi
 
 ## How the sketch steers the image
 
-Stable Diffusion 1.5 is a latent diffusion model. It doesn't paint pixels directly: a VAE encoder compresses a 512×512 image into a 64×64×4 latent, and a UNet learns to remove noise from that latent step by step. At generation time I start from pure Gaussian noise (fixed by the seed), and the UNet, guided by my text prompt through the CLIP text encoder, denoises it over 25 scheduler steps. The VAE decoder then turns the clean latent back into pixels.
+Stable Diffusion 1.5 is a latent diffusion model. It does not paint pixels directly: a VAE encoder compresses a 512×512 image into a 64×64×4 latent, and a UNet learns to remove noise from that latent step by step. At generation time I start from pure Gaussian noise (fixed by the seed), and the UNet, guided by my text prompt through the CLIP text encoder, denoises it over 25 scheduler steps. The VAE decoder then turns the clean latent back into pixels.
 
-On its own, the text prompt only says *what* to draw, not *where*. That's the job of ControlNet. It's a trainable copy of the UNet's encoder that reads a spatial condition image (for the scribble model, white strokes on black) and adds its features back into the UNet at every denoising step through zero-initialised convolutions. The `controlnet_conditioning_scale` multiplies those added features:
+On its own, the text prompt only says *what* to draw, not *where*. That is the job of ControlNet. It is a trainable copy of the UNet's encoder that reads a spatial condition image (for the scribble model, white strokes on black) and adds its features back into the UNet at every denoising step through zero-initialised convolutions. The `controlnet_conditioning_scale` multiplies those added features:
 
-- **0.00:** the ControlNet contributes nothing. The image comes from the prompt alone, so it's my baseline.
+- **0.00:** the ControlNet contributes nothing. The image comes from the prompt alone, so it is my baseline.
 - **0.65:** moderate guidance. The layout should follow my lines but the model keeps some freedom.
 - **1.10:** strong guidance. The lines should dominate, sometimes at the cost of realism.
 
@@ -28,7 +28,7 @@ Before any of that, my preprocessing (`src/sketch_pipeline.py`) turns the photo 
 | 1. Control strength | ControlNet scale 0.00 / 0.65 / 1.10 | prompt, seed, steps, guidance, resolution | 3 per sketch |
 | 2. Prompt variation | two alternative prompts | sketch, seed, scale (0.65), steps, guidance | 2 per sketch (+ the main prompt at 0.65 from experiment 1) |
 
-That's 15 generated images in total. Changing one thing at a time is the point: if I changed the prompt and the strength together, I couldn't say which one caused a difference.
+That is 15 generated images in total. Changing one thing at a time is the point: if I changed the prompt and the strength together, I could not say which one caused a difference.
 
 | Sketch | Main prompt | Variant 1 | Variant 2 |
 |---|---|---|---|
@@ -62,7 +62,7 @@ The exact prompt text lives in `experiments.json`.
 4. The generation cell downloads the models from Hugging Face on the first run, then makes the 15 images.
 5. The last cell downloads `sketch_results.zip` with everything in `outputs/`.
 
-### Locally (needs a CUDA GPU with enough memory; my laptop's 3 GB card isn't enough)
+### Locally (needs a CUDA GPU with enough memory; my laptop's 3 GB card is not enough)
 
 ```bash
 python -m venv .venv
@@ -87,17 +87,17 @@ My drawings go in `data/sketches/` as `01_car.png`, `02_house.png` and `03_sword
 
 ## How I judge the results
 
-Mostly by eye, against my own drawing. A 5 for structure means the main silhouette and the spatial relations between parts survive; a 3 means some features match but important geometry moved; a 1 means the shape is gone. A beautiful image that ignores my sketch doesn't get a high structure score.
+Mostly by eye, against my own drawing. A 5 for structure means the main silhouette and the spatial relations between parts survive; a 3 means some features match but important geometry moved; a 1 means the shape is gone. A beautiful image that ignores my sketch does not get a high structure score.
 
-I also log an *edge-proximity proxy*: the share of my stroke pixels that sit within 5 pixels of an edge in the generated image. It helps me compare strengths on the same sketch, but it's crude. Busy textures like brick or foliage create edges everywhere and inflate it, so I never treat it as a similarity score.
+I also log an *edge-proximity proxy*: the share of my stroke pixels that sit within 5 pixels of an edge in the generated image. It helps me compare strengths on the same sketch, but it is crude. Busy textures like brick or foliage create edges everywhere and inflate it, so I never treat it as a similarity score.
 
-## Limits I'm aware of
+## Limits I am aware of
 
 - A fixed seed makes runs repeatable on the same setup, but different GPUs or library versions can still give slightly different images.
 - Shadows in a phone photo can turn into fake strokes; I check the control maps before generating.
 - Stable Diffusion 1.5 has known weaknesses (hands, text, fine detail) and inherits biases from its training data.
-- The scribble model was trained on rough line drawings, so very detailed shading in a sketch doesn't help it.
-- My tests (`tests/`) check preprocessing, configuration and bookkeeping with a fake pipeline. They don't test image quality; only the real run does that.
+- The scribble model was trained on rough line drawings, so very detailed shading in a sketch does not help it.
+- My tests (`tests/`) check preprocessing, configuration and bookkeeping with a fake pipeline. They do not test image quality; only the real run does that.
 
 ## My web app (bonus)
 
@@ -131,7 +131,7 @@ python app.py            # add --share for a public link
 
 ## My results and report
 
-My T4 run is committed in `outputs/`. The full write-up, with every sketch beside its generated images, is in [`report/REPORT.md`](report/REPORT.md) (Word and PDF versions sit next to it). My image scores are in `outputs/human_review_draft.csv`.
+My T4 run is committed in `outputs/`. The full write-up, with every sketch beside its generated images, is in [`report/Inwe_Sketches_to_Life_report.pdf`](report/Inwe_Sketches_to_Life_report.pdf), built from the LaTeX source [`report/report.tex`](report/report.tex) with `latexmk -pdf -jobname=Inwe_Sketches_to_Life_report report.tex`. My image scores are in `outputs/human_review_draft.csv`.
 
 ![Car: my sketch, its control map, then scales 0.00, 0.65 and 1.10](outputs/01_car_comparison.png)
 

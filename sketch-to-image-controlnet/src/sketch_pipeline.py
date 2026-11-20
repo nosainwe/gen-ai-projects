@@ -62,7 +62,7 @@ def sketch_edge_recall(control: Image.Image, generated: Image.Image,
                        tolerance_pixels: int = 5, edge_threshold: int = 65) -> float:
     """Fraction of my sketch strokes that land within a few pixels of an edge in the output.
 
-    It's a rough helper for comparing strengths, nothing more. A busy texture
+    It is a rough helper for comparing strengths, nothing more. A busy texture
     (brick, foliage) creates edges everywhere and can push the number up without
     the shape being right, so my own visual ratings carry the real judgement.
     """

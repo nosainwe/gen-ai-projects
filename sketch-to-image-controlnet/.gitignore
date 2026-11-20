@@ -6,4 +6,4 @@ __pycache__/
 outputs/_private/
 outputs/*.tmp
 ~$*.docx
-# I commit my own sketches and generated outputs on purpose: they're part of my submission.
+# I commit my own sketches and generated outputs on purpose: they are part of my submission.
